@@ -14,8 +14,8 @@ app.use((_, res, next) => {
 app.use(logger('dev'));
 
 // You can place your routes here, feel free to refactor:
-const { example } = require('./routes');
-app.use('/api/example', example)
+
+app.use('/api/example', require('./routes/example'))
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
