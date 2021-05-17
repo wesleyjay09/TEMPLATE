@@ -1,20 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react'
+import HomeLoginBtn from './components/loginFeatures/homeLoginBtn' //tyler
+import HomeLogoutBtn from './components/loginFeatures/homeLogoutBtn' //tyler
+class App extends React.Component{
+  
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      
-    };
-  }
-  componentDidMount() {
-  }
-
-  render() {
+  render(){
     return (
-      <>
-      <div>boop</div>      
-      </>
+      <div className='App'>
+        <HomeLoginBtn />
+        <HomeLogoutBtn />
+      </div>
     );
   }
 }
+
+export default App;
