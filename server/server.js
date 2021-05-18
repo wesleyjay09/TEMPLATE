@@ -15,7 +15,7 @@ app.use(morgan('dev'));
 
 // You can place your routes here, feel free to refactor:
 
-app.use('/api/example', require('./routes/example'))
+app.use('/api/', require('./routes/example'))
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
