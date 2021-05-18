@@ -6,19 +6,23 @@ import { GoogleLogout} from 'react-google-login';
 const clientId = '5498314317-33lnc42jkoqki1duov32okcmrbiejsjj.apps.googleusercontent.com'
 
 // this is the functionality tied to the logout button
-function Logout(){
+function Logout(props){
     // if the logout is successful just display to the user with a simple pop-up that is easy
     const onSuccess = () =>{
         alert(`Logout made successfully`)
+        props.logInWithGoogleAuthentication(null)
     }
     return(
         // this is calling from the react google login to impliment the style send all the style infromation into the style.
         <div>
             <GoogleLogout
                 clientId={clientId}
+                // render={renderProps => (
+                //     <button onClick={renderProps.onClick} className='googleLogoutBtn' disabled={renderProps.disabled}>This is my custom Google button</button>
+                //   )}
                 buttonText="Logout"
                 onLogoutSuccess={onSuccess}
-                style={{marginTop: '100px'}}
+                className={'googleLogoutBtn'}
             />
         </div>
     )
