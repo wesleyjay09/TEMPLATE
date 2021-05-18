@@ -1,34 +1,45 @@
 import React from 'react'
-// this is going to need to be installed just run npm -i
+import axios from 'axios'
 import { GoogleLogin } from 'react-google-login'
 
 // this is the clientId for the login feature -- this is connected to the main controller google acc
 const clientId = '5498314317-vrpiu36pegc5t2kkeo7sq349gb816dtg.apps.googleusercontent.com'
 
 // this is tied to the landing page login btn, when clicked it checks whether or not it was successful
-function Login(){
+function Login(props){
     // if it was successful then do this
-    const onSuccess = (res) =>{
-        // for now i just have the infromation out putted to the console, this will probbably get added to a change state feature for the entire page
-        console.log('[Login Success] currentUser:', res.profileObj);
+    const onSuccess = (res1) =>{
+        try {
+            axios.get('http://localhost:8000/api/example')
+            .then(res2 =>{
+                const userRole = res2.data.data
+                props.logInWithGoogleAuthentication(res1.profileObj,userRole)
+            })
+        } catch (err) {
+            props.logInWithGoogleAuthentication(res1.profileObj)
+            window.alert('Login Failed, please contact the site admin for further instructions.')
+        }
     };
     // otherwise do this
     const onFailure = (res) =>{
+        window.alert('Login Failed, please contact the site admin for further instructions.')
         // There isnt much happining here just saying its a failure
-        console.log(`[Login failed] res: ${res}`)
+        props.logInWithGoogleAuthentication(null)
     };
 // this is just a base return with the login button connect to google login feature, hard to change 
     return(
         <div>
             <GoogleLogin
             clientId={clientId}
+            // render={renderProps => (
+            //     <button onClick={renderProps.onClick} className='googleLoginBtn' disabled={renderProps.disabled}>This is my custom Google button</button>
+            //   )}
             buttonText='Login'
             onSuccess={onSuccess}
             onFailure={onFailure}
             cookiePolicy={'single_host_origin'}
-            // you can set whatever styles for the button you want right here
-            style={{marginTop: '100px'}}
             isSignedIn={true}
+            className={'googleLoginBtn'}
             />
         </div>
     )

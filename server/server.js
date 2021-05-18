@@ -1,6 +1,6 @@
 const createError = require('http-errors');
-const logger = require('morgan');
 const express = require('express');
+const morgan = require('morgan');
 const app = express();
 
 
@@ -11,7 +11,7 @@ app.use((_, res, next) => {
     next();
 });
 
-app.use(logger('dev'));
+app.use(morgan('dev'));
 
 // You can place your routes here, feel free to refactor:
 
