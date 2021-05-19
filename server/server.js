@@ -10,7 +10,7 @@ app.use((_, res, next) => {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
-
+app.use(express.json())
 app.use(morgan('dev'));
 
 // You can place your routes here, feel free to refactor:
@@ -30,7 +30,11 @@ app.use(function (err, req, res, next) {
 
     // render the error page
     res.status(err.status || 500);
-    res.render('error');
+    //wesley removed res.render and replaced it with res.json
+    res.json({
+        message: err.message,
+        error: err
+        });
 });
 
 module.exports = app;
