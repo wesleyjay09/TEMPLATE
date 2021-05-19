@@ -7,18 +7,6 @@ router.get('/', (req, res) => {
     res.json({data:'Admin'})
 
 })
-
-
-const pool = new Pool({
-    user:'wesleycoleman',
-    password:'',
-    database:'shoutout',
-    host:'localhost',
-    port:5432
-});
-
-
-
 //wes
 //route to get all staff messages
 router.get('/messages', async (req, res) => {

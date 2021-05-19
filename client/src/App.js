@@ -22,12 +22,12 @@ class App extends React.Component{
       loggedInUserRole: data2
     })
     console.log(this.state.loggedInUserGoogleData)
-    console.log(this.state.loggedInUserRole)
   }
 
 
   // end of functions 
   render(){
+    
     return (
       <div className='App'>
         {this.state.loggedInUserGoogleData === null && <HomeLoginBtn 
