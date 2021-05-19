@@ -10,7 +10,7 @@ function Login(props){
     // if it was successful then do this
     const onSuccess = (res1) =>{
         try {
-            axios.get('http://localhost:8000/api/example')
+            axios.get('http://localhost:8000/api/')
             .then(res2 =>{
                 const userRole = res2.data.data
                 props.logInWithGoogleAuthentication(res1.profileObj,userRole)
