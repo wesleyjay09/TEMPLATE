@@ -10,7 +10,7 @@ function Logout(props){
     // if the logout is successful just display to the user with a simple pop-up that is easy
     const onSuccess = () =>{
         alert(`Logout made successfully`)
-        props.logInWithGoogleAuthentication(null)
+        props.logInWithGoogleAuthentication(null,null)
     }
     return(
         // this is calling from the react google login to impliment the style send all the style infromation into the style.

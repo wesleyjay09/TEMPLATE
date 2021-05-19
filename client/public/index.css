@@ -28,4 +28,24 @@
     width: 80%;
     height: 60%;
     background-color: grey;
+    overflow-y: scroll;
+}
+.single-message-container{
+    position: relative;
+    margin-top: 1%;
+    margin-left: 1%;
+    height: 20%;
+    width: 97.5%;
+    background-color: ivory;
+}
+.message-input-box{
+    position: absolute;
+    margin-top: 0.2%;
+    background-color:brown;
+    border-radius: 10px;
+    width: 80%;
+    height: 10%;
+    top: 80%;
+    left: 10%;
+    font-size: 300%;
 }

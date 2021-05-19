@@ -6,7 +6,6 @@ router.get('/', (req, res) => {
     res.json({data:'Admin'})
 
 })
-
 //wes
 //route to get all staff messages
 router.get('/messages', async (req, res) => {
