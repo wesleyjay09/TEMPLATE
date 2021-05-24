@@ -17,7 +17,9 @@ class AdminSpeceficBtn extends React.Component{
             <button className='topBarButton' id='pending'>Pending</button>
             <button className='topBarButton' id='recentEvents'>Recent Events</button>
             <button className='topBarButton' id='cohortData'>Cohort Data</button>
-            <button className='topBarButton' id='shoutoutsButton'>Open Shoutout</button> 
+            <button className='topBarButton' id='shoutoutsButton' onClick={()=>{
+                this.props.changeTab('openevent')
+            }}>Open Shoutout </button> 
             <button className='topBarButton' id='userProfileButton'>P</button>
 
         </div>

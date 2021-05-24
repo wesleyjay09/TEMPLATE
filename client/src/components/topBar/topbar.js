@@ -13,7 +13,7 @@ class Topbar extends React.Component{
             <div className='topBarContainer'>
                 {this.props.loggedInUserRole === 'Admin'&&<AdminSpeceficBtn 
                     loggedInUserRole={this.props.loggedInUserRole}
-                    // changeTab = {this.props.changeTab}
+                    changeTab = {this.props.changeTab}
                     />}
             </div>
         )

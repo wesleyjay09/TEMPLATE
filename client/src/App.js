@@ -20,10 +20,9 @@ class App extends React.Component{
   }
     // functions
   changeTab(str){
-    this.setState(
-      currentTab = str
+    this.setState({currentTab: str}
     )
-    console.log(this.state.currentTab)
+   
   }
 
   logInWithGoogleAuthentication(data1,data2){
@@ -37,7 +36,7 @@ class App extends React.Component{
 
   // end of functions 
   render(){
-
+    
     return (
       <div className='App'>
         {this.state.loggedInUserGoogleData === null && <HomeLoginBtn 
@@ -49,7 +48,7 @@ class App extends React.Component{
         <TopBar
         loggedInUserGoogleData = {this.state.loggedInUserGoogleData}
         loggedInUserRole = {this.state.loggedInUserRole}
-        // changeTab = {this.changeTab}
+        changeTab = {this.changeTab}
         />
         {this.state.currentTab === "openevent" && <MessageHolder 
         loggedInUserGoogleData = {this.state.loggedInUserGoogleData}
