@@ -21,7 +21,7 @@ router.get('/messages', async (req, res) => {
 router.post('/messages', async (req, res) => {
     try {
         const { message } = req.body;
-        const newMessage = await pool.query("INSERT INTO messages(message) VALUES ($1)"  , [message]);
+        const newMessage = await pool.query("INSERT INTO messages(message) VALUES ($1)", [message]);
         res.json(newMessage)
     } catch (err) {
         console.error(err.message)
@@ -38,20 +38,16 @@ router.delete('/messages/:id' , async(req, res) => {
     }
 })
 
-//route to get all student messages
-//route to post student messages
-//route to delete student messages
-
-//route to post like messages
-// router.post('/', async(req, res) => {
-//     try {
-//         const {} = req.body
-//     const newLike = await pool.query("INSERT INTO () VALUES ()", [])
-//     res.json(newlike)
-//     } catch (err) {
-//         console.error(err.message)
-//     }
-// })
+//adding the user data to the users table
+router.post('/users' , async(req, res) =>{
+    try {
+        const { gmail, firstname, lastname } = req.body;
+        const newUser = await pool.query("INSERT INTO users(gmail, firstname, lastname) VALUES ($1, $2,$3",[gmail,firstname, lastname])
+    } catch (err) {
+        console.error(err.message)
+        
+    }
+})
 
 
 

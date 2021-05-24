@@ -22,6 +22,7 @@ CREATE DATABASE shoutout;
     CREATE TABLE cohort (
         cohort_id SERIAL,
         start_date TEXT,
+        cohort_name TEXT,
         end_date TEXT,
         PRIMARY KEY (cohort_id)
     );
