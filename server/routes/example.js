@@ -1,16 +1,25 @@
-//const { PayloadTooLarge } = require('http-errors');
-
 const Pool = require("pg").Pool;
+const pool = new Pool({
+    user: "postgres",
+    password: "Mnbvcdfghj01",
+    database: "shoutout",
+    host: "localhost",
+    port: 5432
+});
+
+
 const router = require('express').Router();
+
+const messages = ['message one','this is a cool site', 'these messages can only be seen by admin']
 
 router.get('/', (req, res) => {
     res.json({data:'Admin'})
-
 })
 //wes
 //route to get all staff messages
-router.get('/messages', async (req, res) => {
+router.get('/messages/:role', async (req, res) => {
     try {
+        const role = req.query.role;
         const getMessages = await pool.query("SELECT * FROM messages")
         res.json(getMessages.rows)
     } catch (err) {
@@ -20,8 +29,8 @@ router.get('/messages', async (req, res) => {
 //route to post staff messages
 router.post('/messages', async (req, res) => {
     try {
-        const { message } = req.body;
-        const newMessage = await pool.query("INSERT INTO messages(message) VALUES ($1)"  , [message]);
+        const { message,role} = req.body;
+        const newMessage = await pool.query("INSERT INTO messages(message,role,status,likes) VALUES ($1,$2,$3,$4)"  ,[message,role,true,0]);
         res.json(newMessage)
     } catch (err) {
         console.error(err.message)

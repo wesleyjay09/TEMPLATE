@@ -7,14 +7,22 @@ class MessageHolder extends React.Component{
         super(props)
         this.state={
             arrOfMessages: [],
-        }
-     }
+        }    
+        this.postMessage = this.postMessage.bind(this)
+    }     
+    postMessage(message){
+        const newMessage = {message:message}
+        const newArrayOfMessages = this.state.arrOfMessages
+        newArrayOfMessages.push(newMessage)
+        this.setState({arrOfMessages:newArrayOfMessages})
+    }
     render(){
+        console.log(this.state.arrOfMessages)
         if(this.props.loggedInUserRole === null && this.state.arrOfMessages.length !== 0){
             this.setState({arrOfMessages: []})
         }
         if(this.state.arrOfMessages.length === 0 && this.props.loggedInUserRole !== null){
-            axios.get(`http://localhost:8000/api/messages/test/${this.props.loggedInUserRole}`)
+            axios.get(`http://localhost:8000/api/messages/${this.props.loggedInUserRole}`)
                 .then(res =>{
                     const arrOfMessages = res.data;
                     this.setState({arrOfMessages:arrOfMessages})
@@ -22,15 +30,18 @@ class MessageHolder extends React.Component{
         }
         const messages = this.state.arrOfMessages.slice(0).reverse().map(message=>{
             return(
-                <div className='single-message-container'>
-                    <div className='single-message-content'>{message}</div>
+                <div className='single-message-container'>  
+                    <div className='single-message-content'>{message.message}</div>
                 </div>
             )
             })
         return(
             <>
             <div className='messageContainer'>{messages}</div>
-            {this.props.loggedInUserRole !== null && <MessageInput/>}
+            {this.props.loggedInUserRole !== null && 
+                <MessageInput
+                    postMessage = {this.postMessage}
+                />}
             </>
         )
     }
