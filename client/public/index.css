@@ -1,3 +1,7 @@
+body{
+    overflow-x: hidden;
+}
+
 .googleLoginBtn{
     position: fixed;
     top: 1vh;
@@ -62,7 +66,7 @@
 
 .topBarButton{
     position: relative;
-    left: 76vw;
+    left: 75.85vw;
     top: 1vh;
     height: 5vh;
     border-radius: 0px;
