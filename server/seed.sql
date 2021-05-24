@@ -1,11 +1,5 @@
 CREATE DATABASE shoutout;
 
-    CREATE TABLE roles (
-        user_id INT,
-        roles TEXT,
-        FOREIGN KEY (user_id) REFERENCES users (user_id)
-    );
-
     CREATE TABLE users (
         user_id SERIAL,
         cohort_id INT,
@@ -17,6 +11,12 @@ CREATE DATABASE shoutout;
         PRIMARY KEY (user_id),
         FOREIGN KEY (cohort_id) REFERENCES cohort (cohort_id)
 
+    );
+
+    CREATE TABLE roles (
+        user_id INT,
+        roles TEXT,
+        FOREIGN KEY (user_id) REFERENCES users (user_id)
     );
 
     CREATE TABLE cohort (
@@ -42,7 +42,6 @@ CREATE DATABASE shoutout;
     CREATE TABLE likes (
         msg_id INT,
         users INT,
-        
         FOREIGN KEY (users) REFERENCES users (user_id),
         FOREIGN KEY (msg_id) REFERENCES messages (msg_id)
     );
