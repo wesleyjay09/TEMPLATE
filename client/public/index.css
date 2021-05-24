@@ -24,7 +24,7 @@
 }
 .messageContainer{
     position: absolute;
-    top: 25%;
+    top: 40vh;
     left: 10%;
     width: 80.5vw;
     height: 60%;
@@ -39,16 +39,25 @@
     width: 97.5%;
     background-color: #FAFAFA;
 }
-.message-input-box{
+#message-input-box{
     position: absolute;
     margin-top: 0.2%;
     background-color: #f4f4f4;
     width: 80vw;
-    height: 10%;
-    top: 10%;
-    left: 10%;
+    height: 20vh;
+    top: 2vh;
+    left: -13.25%;
     font-size: 300%;
     border: #ef9836 3px solid;
+}
+
+#MessageInput{
+    position: relative;
+    left: 20vw;
+    top: 10vh;
+    width: 80vw;
+    height: 10vh;
+    font-size: 8px;
 }
 
 .topBarButton{
