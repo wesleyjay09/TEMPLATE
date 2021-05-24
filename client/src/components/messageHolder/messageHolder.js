@@ -15,6 +15,11 @@ class MessageHolder extends React.Component{
         const newArrayOfMessages = this.state.arrOfMessages
         newArrayOfMessages.push(newMessage)
         this.setState({arrOfMessages:newArrayOfMessages})
+        const messageToSend = {
+            message:message,
+            role:this.props.loggedInUserRole
+        }
+        axios.post('http://localhost:8000/api/messages',messageToSend)
     }
     render(){
         console.log(this.state.arrOfMessages)

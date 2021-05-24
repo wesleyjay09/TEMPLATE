@@ -30,6 +30,8 @@ router.get('/messages/:role', async (req, res) => {
 router.post('/messages', async (req, res) => {
     try {
         const { message,role} = req.body;
+        console.log(message)
+        console.log(role)
         const newMessage = await pool.query("INSERT INTO messages(message,role,status,likes) VALUES ($1,$2,$3,$4)"  ,[message,role,true,0]);
         res.json(newMessage)
     } catch (err) {
