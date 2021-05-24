@@ -10,7 +10,11 @@ class AdminSpeceficBtn extends React.Component{
     }
     render(){
         return(
-        <button className='adminSpeceficBtn'>admin test btn</button>
+        <div>
+            <button className='topBarButton' id='adminButton' >Admin</button>
+            <button className='topBarButton' id='shoutoutsButton'>Shoutouts</button>
+            <button className='topBarButton' id='userProfileButton'>P</button>
+        </div>
         )
     }
 }
