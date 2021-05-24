@@ -40,9 +40,6 @@ class MessageHolder extends React.Component{
                 </div>
             )
             })
-        if(this.props.loggedInUserRole !== null){
-            
-        }
         return(
             <>
             <div className='messageContainer'>{messages}</div>
