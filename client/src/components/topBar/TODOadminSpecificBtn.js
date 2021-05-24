@@ -11,9 +11,15 @@ class AdminSpeceficBtn extends React.Component{
     render(){
         return(
         <div>
-            <button className='topBarButton' id='adminButton' >Admin</button>
-            <button className='topBarButton' id='shoutoutsButton'>Shoutouts</button>
+            <button className='topBarButton' id='adminButton'onClick={()=>{
+                this.props.changeTab('admin')
+            }}>Admin</button>
+            <button className='topBarButton' id='pending'>Pending</button>
+            <button className='topBarButton' id='recentEvents'>Recent Events</button>
+            <button className='topBarButton' id='cohortData'>Cohort Data</button>
+            <button className='topBarButton' id='shoutoutsButton'>Open Shoutout</button> 
             <button className='topBarButton' id='userProfileButton'>P</button>
+
         </div>
         )
     }

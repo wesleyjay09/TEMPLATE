@@ -10,24 +10,34 @@ class App extends React.Component{
     this.state = {
       loggedInUserGoogleData: null,
       loggedInUserRole: null,
+      currentTab: 'openevent'
+      //img
     }
   
   // bindings for functions
+    this.changeTab = this.changeTab.bind(this)
     this.logInWithGoogleAuthentication = this.logInWithGoogleAuthentication.bind(this)
   }
     // functions
+  changeTab(str){
+    this.setState(
+      currentTab = str
+    )
+    console.log(this.state.currentTab)
+  }
+
   logInWithGoogleAuthentication(data1,data2){
     this.setState({
       loggedInUserGoogleData: data1,
       loggedInUserRole: data2
     })
-    console.log(this.state.loggedInUserGoogleData)
+    console.log(this.state.loggedInUserGoogleData);
   }
 
 
   // end of functions 
   render(){
-    
+
     return (
       <div className='App'>
         {this.state.loggedInUserGoogleData === null && <HomeLoginBtn 
@@ -39,11 +49,17 @@ class App extends React.Component{
         <TopBar
         loggedInUserGoogleData = {this.state.loggedInUserGoogleData}
         loggedInUserRole = {this.state.loggedInUserRole}
+        // changeTab = {this.changeTab}
         />
-        <MessageHolder 
+        {this.state.currentTab === "openevent" && <MessageHolder 
         loggedInUserGoogleData = {this.state.loggedInUserGoogleData}
         loggedInUserRole = {this.state.loggedInUserRole}
-        />
+        />}
+        {this.state.currentTab === "mypost" && <MessageHolder 
+        loggedInUserGoogleData = {this.state.loggedInUserGoogleData}
+        loggedInUserRole = {this.state.loggedInUserRole}
+        />}
+
       </div>
     );
   }
