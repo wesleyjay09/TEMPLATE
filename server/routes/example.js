@@ -10,8 +10,6 @@ const pool = new Pool({
 
 const router = require('express').Router();
 
-const messages = ['message one','this is a cool site', 'these messages can only be seen by admin']
-
 router.get('/', (req, res) => {
     res.json({data:'Admin'})
 })
