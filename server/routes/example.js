@@ -1,7 +1,7 @@
 const Pool = require("pg").Pool;
 const pool = new Pool({
-    user: "postgres",
-    password: "Mnbvcdfghj01",
+    user: "",
+    password:"" ,
     database: "shoutout",
     host: "localhost",
     port: 5432
@@ -40,6 +40,18 @@ router.post('/messages', async (req, res) => {
         console.error(err.message)
     }
 })
+
+//route to update message status (pending/accepted)
+router.put('/messages', async (req, res) => {
+    try {
+        const { status, msg_id } = req.body
+        const changeStatus = ("UPDATE messages SET (status = ($1) WHERE msg_id = ($2)", [status, msg_id])
+    } catch (err) {
+        console.error(err.message)
+        
+    }
+})
+
 //route to delete staff messages
 router.delete('/messages/:id' , async(req, res) => {
     try {
@@ -51,23 +63,47 @@ router.delete('/messages/:id' , async(req, res) => {
     }
 })
 
-//route to get all student messages
-//route to post student messages
-//route to delete student messages
+//adding the user data to the users table
+router.post('/users' , async(req, res) =>{
+    try {
+        const { gmail, firstname, lastname } = req.body;
+        const newUser = await pool.query("INSERT INTO users(gmail, firstname, lastname) VALUES ($1, $2,$3)",[gmail,firstname, lastname])
+    } catch (err) {
+        console.error(err.message)
+    }
+})
 
-//route to post like messages
-// router.post('/', async(req, res) => {
-//     try {
-//         const {} = req.body
-//     const newLike = await pool.query("INSERT INTO () VALUES ()", [])
-//     res.json(newlike)
-//     } catch (err) {
-//         console.error(err.message)
-//     }
-// })
+//cohort routes
+router.post('cohort', async(req, res) => {
+    try {
+        const {start_date, cohort_name, end_date} = req.body
+        const newCohort = await pool.query("INSERT INTO cohort(start_date, cohort_name, end_date) VALUES ($1, $2, $3)", [start_date, cohort_name, end_date])
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
+router.get('cohort', async(req, res) => {
+    try {
+        const newCohort = await pool.query("SELECT * FROM cohort")
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
+router.delete('cohort', async(req, res) => {
+    try {
+        const { cohort_name } = req.body
+        const deleteCohort = await pool.query('DELETE FROM cohort WHERE cohort_name = ($1)", [cohort_name]')
+        res.json('Cohort deleted')
+    } catch (err) {
+        console.error(err.message)
+    }
+})
 
 
 
 
+  
 
 module.exports = router;

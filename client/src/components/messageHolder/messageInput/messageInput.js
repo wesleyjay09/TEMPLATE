@@ -25,7 +25,7 @@ class MessageInput extends React.Component{
                     }
                 }
                 else {
-                    this.setState({message:this.state.message + event.key})
+                    this.setState({message:this.state.message + event.key});
                 }}}>
                 <textarea id="message-input-box" type="text" placeholder="Let someone know how awesome you think they are!"/>
             </form>   
