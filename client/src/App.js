@@ -3,6 +3,7 @@ import HomeLoginBtn from './components/loginFeatures/homeLoginBtn' //tyler
 import HomeLogoutBtn from './components/loginFeatures/homeLogoutBtn' //tyler
 import TopBar from './components/topBar/topbar' //tyler
 import MessageHolder from './components/messageHolder/messageHolder'//tyler
+import AdminPage from './components/adminSpecificPage/adminSpecificPage' //tyler
 class App extends React.Component{
   constructor(props){
     super(props)
@@ -58,7 +59,8 @@ class App extends React.Component{
         loggedInUserGoogleData = {this.state.loggedInUserGoogleData}
         loggedInUserRole = {this.state.loggedInUserRole}
         />}
-
+        {this.state.currentTab === 'admin' && <AdminPage
+        />}
       </div>
     );
   }
