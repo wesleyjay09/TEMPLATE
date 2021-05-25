@@ -1,4 +1,6 @@
 import React from 'react'
+import openSocket from "socket.io-client";
+const socket = openSocket("http://localhost:3000");
 
 class MessageInput extends React.Component{
     constructor(props){
@@ -16,6 +18,7 @@ class MessageInput extends React.Component{
                         event.preventDefault()
                         window.alert('please provide a message to send')
                     } else {
+                        socket.emit('newShoutout', event.target.value) 
                         this.props.postMessage(event.target.value)
                         event.target.value = ''
                         event.preventDefault()
