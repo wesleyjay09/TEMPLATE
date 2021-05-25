@@ -3,7 +3,7 @@ import HomeLoginBtn from './components/loginFeatures/homeLoginBtn' //tyler
 import HomeLogoutBtn from './components/loginFeatures/homeLogoutBtn' //tyler
 import TopBar from './components/topBar/topbar' //tyler
 import MessageHolder from './components/messageHolder/messageHolder'//tyler
-import PostMade from './components/postMade/postMade'
+import AdminPage from './components/adminSpecificPage/adminSpecificPage' //tyler
 class App extends React.Component{
   constructor(props){
     super(props)
@@ -11,9 +11,7 @@ class App extends React.Component{
     this.state = {
       loggedInUserGoogleData: null,
       loggedInUserRole: null,
-      currentTab: 'openevent',
-      //change this to be whatever id corresponds to gmail
-      userId: 2
+      currentTab: 'openevent'
       //img
     }
   
@@ -53,17 +51,16 @@ class App extends React.Component{
         loggedInUserRole = {this.state.loggedInUserRole}
         changeTab = {this.changeTab}
         />
-        {this.state.currentTab === "openEvent" && <MessageHolder 
+        {this.state.currentTab === "openevent" && <MessageHolder 
         loggedInUserGoogleData = {this.state.loggedInUserGoogleData}
         loggedInUserRole = {this.state.loggedInUserRole}
         />}
-        {this.state.currentTab === "postMade" && <PostMade 
-        id = {this.state.userId}
+        {this.state.currentTab === "mypost" && <MessageHolder 
+        loggedInUserGoogleData = {this.state.loggedInUserGoogleData}
+        loggedInUserRole = {this.state.loggedInUserRole}
         />}
-        {this.state.currentTab === ""
-
-        }
-
+        {this.state.currentTab === 'admin' && <AdminPage
+        />}
       </div>
     );
   }
