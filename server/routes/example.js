@@ -1,16 +1,16 @@
 const Pool = require("pg").Pool;
 const pool = new Pool({
-    user: "postgres",
-    password: "Mnbvcdfghj01",
+    user: "",
+    password:"" ,
     database: "shoutout",
     host: "localhost",
     port: 5432
 });
 
 
-const router = require('express').Router();
 
-const messages = ['message one','this is a cool site', 'these messages can only be seen by admin']
+
+const router = require('express').Router();
 
 router.get('/', (req, res) => {
     res.json({data:'Admin'})

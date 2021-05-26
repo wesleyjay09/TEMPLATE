@@ -1,5 +1,4 @@
 import React from 'react'
-import AdminSpeceficBtn from './TODOadminSpecificBtn'
 class Topbar extends React.Component{
     constructor(props){
         super(props)   
@@ -11,7 +10,12 @@ class Topbar extends React.Component{
     render(){
         return(
             <div className='topBarContainer'>
-                {this.props.loggedInUserRole === 'Admin'&&<AdminSpeceficBtn loggedInUserRole={this.props.loggedInUserRole}/>}
+                {this.props.loggedInUserRole === 'Admin'&&<button className='topBarButton' id='adminButton'onClick={()=>{this.props.changeTab('admin')}}>Admin</button>}
+                <button className='topBarButton' id='pending' onClick={()=>{this.props.changeTab('pending')}}>Pending</button>
+                <button className='topBarButton' id='recentEvents' onClick={()=>{this.props.changeTab('recentEvents')}}>Recent Events</button>
+                <button className='topBarButton' id='cohortData' onClick={()=>{this.props.changeTab('cohortData')}}>Cohort Data</button>
+                <button className='topBarButton' id='shoutoutsButton' onClick={()=>{this.props.changeTab('openevent')}}>Open Shoutout </button> 
+                <button className='topBarButton' id='userProfileButton' onClick={()=>{this.props.changeTab('userProfile')}}>P</button>
             </div>
         )
     }

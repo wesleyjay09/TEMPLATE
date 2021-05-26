@@ -1,7 +1,35 @@
 const createError = require('http-errors');
 const express = require('express');
-const morgan = require('morgan');
 const app = express();
+const cors = require("cors");
+const morgan = require('morgan');
+
+//Kolby socket.io
+const http = require("http");
+const socketIO = require("socket.io"); 
+
+const server = http.createServer(app);
+
+const io = socketIO(server, {
+  cors: true,
+  origins:["localhost:3000"]
+});
+
+app.use(cors())
+
+io.on('connection', (socket) => {
+    //we can handle what happens on connection here
+    console.log('Socket Connected')
+
+    socket.emit('id', socket.id);
+
+    socket.on('newShoutout', (data) => {
+        socket.broadcast.emit('newShoutout', data)
+    })
+})
+
+server.listen(3000)
+//end of socket.io
 
 
 // open up CORS 
