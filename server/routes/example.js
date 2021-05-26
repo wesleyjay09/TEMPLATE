@@ -39,6 +39,8 @@ router.post('/messages', async (req, res) => {
     }
 })
 
+
+
 //route to update message status (pending/accepted)
 router.put('/messages', async (req, res) => {
     try {
@@ -99,8 +101,25 @@ router.delete('cohort', async(req, res) => {
     }
 })
 
+// routes for likes
 
+router.post('/likes', async (req, res) => {
+    try {
+        const { likes_total } = req.body
+        const newLike = await pool.query("INSERT INTO likes(likes_total) VALUES ($1)", [likes_total])
+    } catch (err) {
+        console.error(err.message)
+    }
+})
 
+router.put('/likes', async (req, res) => {
+    try {
+        const { likes_total, msg_id } =  req.body
+        const addLike = await pool.query("UPDATE likes SET likes_total = ($1) WHERE msg_id = ($2)", [likes_total, msg_id])
+    } catch (err) {
+        console.error(err.message)
+    }
+})
 
   
 

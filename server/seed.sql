@@ -36,10 +36,12 @@ CREATE DATABASE shoutout;
         time_stamp INT,
         likes INT,
         PRIMARY KEY (msg_id),
-        FOREIGN KEY (user_id) REFERENCES users (user_id)
+        FOREIGN KEY (user_id) REFERENCES users (user_id),
+        FOREIGN KEY (cohort_id) REFERENCES cohort (cohort_id)
     );
 
     CREATE TABLE likes (
+        likes_total INT,
         msg_id INT,
         users INT,
         FOREIGN KEY (users) REFERENCES users (user_id),
