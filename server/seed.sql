@@ -29,6 +29,8 @@ CREATE DATABASE shoutout;
 
     CREATE TABLE messages (
         msg_id SERIAL,
+        event_id INT,
+        cohort_id INT,
         message TEXT,
         role TEXT,
         user_id INT,
@@ -37,7 +39,8 @@ CREATE DATABASE shoutout;
         likes INT,
         PRIMARY KEY (msg_id),
         FOREIGN KEY (user_id) REFERENCES users (user_id),
-        FOREIGN KEY (cohort_id) REFERENCES cohort (cohort_id)
+        FOREIGN KEY (cohort_id) REFERENCES cohort (cohort_id),
+        FOREIGN KEY (event_id) REFERENCES events (event_id)
     );
 
     CREATE TABLE likes (
@@ -46,4 +49,9 @@ CREATE DATABASE shoutout;
         users INT,
         FOREIGN KEY (users) REFERENCES users (user_id),
         FOREIGN KEY (msg_id) REFERENCES messages (msg_id)
+    );
+
+    CREATE TABLE events (
+        event_id SERIAL,
+        PRIMARY KEY (event_id)
     );

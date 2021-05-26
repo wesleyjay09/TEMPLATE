@@ -6,6 +6,15 @@ const pool = new Pool({
     host: "localhost",
     port: 5432
 });
+//Will use this pool when deployed
+// require("dontenv").config()
+// const { Pool } = require('pg');
+// const pool = new Pool({
+//   connectionString: process.env.DATABASE_URL,
+//   ssl: {
+//     rejectUnauthorized: false
+//   }
+// });
 
 
 
@@ -37,6 +46,25 @@ router.post('/messages', async (req, res) => {
     } catch (err) {
         console.error(err.message)
     }
+})
+//route for specific cohort messages
+router.get('/messages/:cohort', async (req, res) => {
+    try {
+        const { cohort_id } = req.body
+        const getMessagesFromCohort = await pool.query("SELECT * FROM messages WHERE cohort_id = ($1)", [cohort_id])
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+//route for specific event
+router.get('/messages/:event', async (req, res) => {
+    try {
+        const { event_id } = req.body
+    const getMessagesByEvent = await pool.query("SELECT * FROM messages WHERE event_id = ($1)", [event_id])
+    } catch (err) {
+        console.error(err.message)
+    }
+    
 })
 
 
