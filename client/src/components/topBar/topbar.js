@@ -15,7 +15,7 @@ class Topbar extends React.Component{
                 <button className='topBarButton' id='recentEvents' onClick={()=>{this.props.changeTab('recentEvents')}}>Recent Events</button>
                 <button className='topBarButton' id='cohortData' onClick={()=>{this.props.changeTab('cohortData')}}>Cohort Data</button>
                 <button className='topBarButton' id='shoutoutsButton' onClick={()=>{this.props.changeTab('openevent')}}>Open Shoutout </button> 
-                <button className='topBarButton' id='userProfileButton' onClick={()=>{this.props.changeTab('userProfile')}}>P</button>
+                <button className='topBarButton' id='userProfileButton' onClick={()=>{this.props.changeTab('myPost')}}>P</button>
             </div>
         )
     }

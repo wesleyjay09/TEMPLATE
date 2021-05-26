@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 
 
-class postMade extends React.Component{
+class PostMade extends React.Component{
     constructor(props){
         super(props)
         this.state={
@@ -36,4 +36,4 @@ class postMade extends React.Component{
         )
     }
 }
-export default postMade
+export default PostMade
