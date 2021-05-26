@@ -23,8 +23,8 @@ io.on('connection', (socket) => {
 
     socket.emit('id', socket.id);
 
-    socket.on('newShoutout', (data) => {
-        socket.broadcast.emit('newShoutout', data)
+    socket.on('newShoutout', (message, user) => {
+        socket.broadcast.emit('newShoutout', message, user)
     })
 })
 

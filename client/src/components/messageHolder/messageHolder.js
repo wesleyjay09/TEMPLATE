@@ -2,18 +2,34 @@ import React from 'react'
 import axios from 'axios'
 import MessageInput from './messageInput/messageInput' //tyler
 
+import openSocket from "socket.io-client";
+const socket = openSocket("http://localhost:3000");
+
+
 class MessageHolder extends React.Component{
     constructor(props){
         super(props)
         this.state={
+            socket : socket,
             arrOfMessages: [],
         }    
         this.postMessage = this.postMessage.bind(this)
-    }     
+    }   
+    
+    componentDidMount(){
+        socket.on("newShoutout", (message, user) => {
+            const newMessage = {message:message}
+            const newArrayOfMessages = this.state.arrOfMessages
+            newArrayOfMessages.push({user, newMessage})
+            this.setState({arrOfMessages:newArrayOfMessages})
+        });
+    }
+
     postMessage(message){
+        let user = this.props.loggedInUserGoogleData.name;
         const newMessage = {message:message}
         const newArrayOfMessages = this.state.arrOfMessages
-        newArrayOfMessages.push(newMessage)
+        newArrayOfMessages.push({user, newMessage})
         this.setState({arrOfMessages:newArrayOfMessages})
         const messageToSend = {
             message:message,
@@ -34,9 +50,11 @@ class MessageHolder extends React.Component{
                 })
         }
         const messages = this.state.arrOfMessages.slice(0).reverse().map(message=>{
+            console.log(message)
             return(
-                <div className='single-message-container'>  
-                    <div className='single-message-content'>{message.message}</div>
+                <div className='single-message-container'> 
+                    <span class='username'>{message.user}: </span>
+                    <span className='single-message-content'>{message.newMessage.message}</span>
                 </div>
             )
             })
@@ -46,6 +64,8 @@ class MessageHolder extends React.Component{
             {this.props.loggedInUserRole !== null && 
                 <MessageInput
                     postMessage = {this.postMessage}
+                    socket = {this.state.socket}
+                    user = {this.props.loggedInUserGoogleData.name}
                 />}
             </>
         )
