@@ -4,6 +4,8 @@ import HomeLogoutBtn from './components/loginFeatures/homeLogoutBtn' //tyler
 import TopBar from './components/topBar/topbar' //tyler
 import MessageHolder from './components/messageHolder/messageHolder'//tyler
 import AdminPage from './components/adminSpecificPage/adminSpecificPage' //tyler
+import PostMade from './components/postMade/postMade'
+import RecentEvents from './components/recent/RecentEvents'
 class App extends React.Component{
   constructor(props){
     super(props)
@@ -11,7 +13,9 @@ class App extends React.Component{
     this.state = {
       loggedInUserGoogleData: null,
       loggedInUserRole: null,
-      currentTab: 'openevent'
+      currentTab: 'openevent',
+      userId: 2,
+      cohortId: 1,
       //img
     }
   
@@ -55,10 +59,14 @@ class App extends React.Component{
         loggedInUserGoogleData = {this.state.loggedInUserGoogleData}
         loggedInUserRole = {this.state.loggedInUserRole}
         />}
-        {this.state.currentTab === "mypost" && <MessageHolder 
-        loggedInUserGoogleData = {this.state.loggedInUserGoogleData}
-        loggedInUserRole = {this.state.loggedInUserRole}
+        {this.state.currentTab === "mypost" && <PostMade
+        id = {this.state.userId}
         />}
+        {this.state.currentTab === 'recentEvents' && <RecentEvents
+        cohortId = {this.state.cohortId}
+      />}
+
+
         {this.state.currentTab === 'admin' && <AdminPage
         />}
       </div>

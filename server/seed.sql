@@ -29,6 +29,8 @@ CREATE DATABASE shoutout;
 
     CREATE TABLE messages (
         msg_id SERIAL,
+        event_id int,
+        cohort_id, int,
         message TEXT,
         role TEXT,
         user_id INT,
