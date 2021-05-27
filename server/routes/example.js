@@ -1,14 +1,20 @@
-const Pool = require("pg").Pool;
+// const Pool = require("pg").Pool;
+// const pool = new Pool({
+//     user: "wesleycoleman",
+//     password:"" ,
+//     database: "shoutout",
+//     host: "localhost",
+//     port: 5432
+// });
+
+
+const { Pool } = require('pg');
 const pool = new Pool({
-    user: "wesleycoleman",
-    password:"" ,
-    database: "shoutout",
-    host: "localhost",
-    port: 5432
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
-
-
-
 
 const router = require('express').Router();
 
