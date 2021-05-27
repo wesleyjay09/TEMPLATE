@@ -2,37 +2,37 @@ import React from 'react'
 import axios from 'axios'
 import MessageInput from './messageInput/messageInput' //tyler
 
-import openSocket from "socket.io-client";
-const socket = openSocket("http://localhost:3000");
+
 
 
 class MessageHolder extends React.Component{
     constructor(props){
         super(props)
         this.state={
-            socket : socket,
             arrOfMessages: [],
+            socket : this.props.socket
         }    
         this.postMessage = this.postMessage.bind(this)
     }   
     
     componentDidMount(){
-        socket.on("newShoutout", (message, user) => {
-            const newMessage = {message:message}
+        this.state.socket.on("newShoutout", (message, user) => {
+            const newMessage = {message:message, user:user}
             const newArrayOfMessages = this.state.arrOfMessages
-            newArrayOfMessages.push({user, newMessage})
+            newArrayOfMessages.push(newMessage)
             this.setState({arrOfMessages:newArrayOfMessages})
         });
     }
 
     postMessage(message){
         let user = this.props.loggedInUserGoogleData.name;
-        const newMessage = {message:message}
+        const newMessage = {message:message, user:user}
         const newArrayOfMessages = this.state.arrOfMessages
-        newArrayOfMessages.push({user, newMessage})
+        newArrayOfMessages.push(newMessage)
         this.setState({arrOfMessages:newArrayOfMessages})
         const messageToSend = {
             message:message,
+            user:user,
             role:this.props.loggedInUserRole
         }
         axios.post('http://localhost:8000/api/messages',messageToSend)
@@ -53,20 +53,21 @@ class MessageHolder extends React.Component{
             console.log(message)
             return(
                 <div className='single-message-container'> 
-                    <span class='username'>{message.user}: </span>
-                    <span className='single-message-content'>{message.newMessage.message}</span>
+                    <span className='username'>{message.user}: </span>
+                    <span className='single-message-content'>{message.message}</span>
                 </div>
             )
             })
         return(
             <>
             <div className='messageContainer'>{messages}</div>
-            {this.props.loggedInUserRole !== null && 
+            {this.props.loggedInUserRole !== null && this.props.currentEvent.ongoing &&
                 <MessageInput
                     postMessage = {this.postMessage}
                     socket = {this.state.socket}
                     user = {this.props.loggedInUserGoogleData.name}
                 />}
+            {!this.props.currentEvent.ongoing && <span id='noEventMessage'>No Event Currently Ongoing.</span>}
             </>
         )
     }
