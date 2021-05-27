@@ -6,6 +6,8 @@ import MessageHolder from './components/messageHolder/messageHolder'//tyler
 import AdminPage from './components/adminSpecificPage/adminSpecificPage' //tyler
 import PostMade from './components/postMade/postMade'
 import RecentEvents from './components/recent/RecentEvents'
+
+
 class App extends React.Component{
   constructor(props){
     super(props)
