@@ -29,8 +29,13 @@ CREATE DATABASE shoutout;
 
     CREATE TABLE messages (
         msg_id SERIAL,
+<<<<<<< HEAD
         event_id INT,
         cohort_id INT,
+=======
+        event_id int,
+        cohort_id, int,
+>>>>>>> upstream/master
         message TEXT,
         role TEXT,
         user_id INT,
