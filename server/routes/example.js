@@ -1,21 +1,11 @@
-// const Pool = require("pg").Pool;
-// const pool = new Pool({
-//     user: "",
-//     password:"" ,
-//     database: "shoutout",
-//     host: "localhost",
-//     port: 5432
-// });
-//Will use this pool when deployed
-require("dontenv").config()
-const { Pool } = require('pg');
+const Pool = require("pg").Pool;
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
- });
-
+    user: "",
+    password:"" ,
+    database: "shoutout",
+    host: "localhost",
+    port: 5432
+});
 
 
 
