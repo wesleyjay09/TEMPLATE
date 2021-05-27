@@ -1,6 +1,10 @@
 {
   "name": "blue-ocean-rewrite",
   "version": "1.0.0",
+  "engines": {
+    "node":"15.9.0",
+    "npm":"7.8.0"
+  },
   "description": "Congratulations and welcome to your first day at Blue Ocean! We are literally an underwater agile software development company.",
   "main": "index.js",
   "scripts": {
@@ -9,7 +13,7 @@
     "launch": "cd ./client && npm run-script build && cd ../server && node bin/www && cd ../client webpack-dev-server &",
     "lint:client": "cd ./client && ./node_modules/.bin/eslint \"src/**/*.{js,jsx}\" && echo 'Your code has passed the linting guidelines' || echo 'Please fix the errors listed above'",
     "lint:server": "cd ./server && ../node_modules/.bin/eslint \"routes/**/*.js\" 2>/dev/null && echo 'Your code has passed the linting guidelines' || echo 'Please fix the errors listed above'",
-    "start": "./client/package.json webpack-dev-server --mode production --open --hot"
+    "start": "./client/package.json webpack-dev-server "
   },
   "repository": {
     "type": "git",
