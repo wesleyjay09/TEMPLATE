@@ -1,14 +1,18 @@
-const Pool = require("pg").Pool;
+// const Pool = require("pg").Pool;
+// const pool = new Pool({
+//     user: "wesleycoleman",
+//     password:"" ,
+//     database: "shoutout",
+//     host: "localhost",
+//     port: 5432
+// });
+const { Pool } = require('pg');
 const pool = new Pool({
-    user: "wesleycoleman",
-    password:"" ,
-    database: "shoutout",
-    host: "localhost",
-    port: 5432
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
-
-
-
 
 const router = require('express').Router();
 
@@ -120,7 +124,9 @@ router.delete('cohort', async(req, res) => {
     }
 })
 
-// routes for likes
+// router.get('/event', async(req, res) =>{
+//     res.status(200).json({currentEvent})
+// })
 
 router.post('/likes', async (req, res) => {
     try {
