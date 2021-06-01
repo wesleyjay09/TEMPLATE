@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack -d -w",
     "test": "jest",
-    "server": "webpack-dev-server --mode development --open --hot"
+    "server": "webpack-dev-server --mode development --open --hot",
+    "start": "react-scripts start"
   },
   "author": "",
   "license": "ISC",
